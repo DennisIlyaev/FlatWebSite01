@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dennis Ilyaev</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+
+	* {
+		margin: 0;
+		padding: 0;
+		font-family: verdana, arial, sans-serif;
+	}
+
+	.clearFix {
+		clear: both;
+	}
+
+	.active {
+		color: orange;
+	}
+
+	#wrapper {
+		margin: 20px auto;
+		width: 940px;
+	}
+
+							/* Main Nav */
+
+
+	nav ul {
+		line-height: 60px;
+		width: 100%;
+		height: 60px;
+		list-style: none;
+		background: url(images/navTop.png);
+	}
+
+	nav ul li {
+		float: left;
+		margin-left: 30px;
+	}
+
+	nav ul li a {
+		text-decoration: none;
+		color: white;
+	}
+
+	nav ul li a:hover {
+		color: orange;
+		transition: color 0.3s;
+		cursor: pointer;
+	}
+
+
+
+
+							/* Main Header */
+
+	.mainHeader {
+		width: 100%;
+		height: 200px;
+		margin-top: 13px;
+		background: url(images/header.jpg);
+	}
+
+	.mainHeader h1 {
+		color: #fff;
+		position: relative;
+		top: 30px;
+		left: 20px;
+
+	}
+
+	.mainHeader p {
+		float: right;
+		width: 50%;
+		color: #fff;
+	}
+
+
+							/* Body Content */
+
+	section {
+		width: 100%;
+		height: 400px;
+		background: #E5EBF7;
+		margin-top: 15px;
+	}
+
+	section h2 {
+		font-size: 21px;
+		padding: 7px 0 10px 7px;
+		color: #153678;
+	}
+
+	table {
+		margin: 0 auto;
+		background: #153678;
+		margin-top: -15px;
+	}
+
+
+	td p {
+		color: white;
+		font-size: 15px;
+		margin-right: 60px;
+
+	}
+
+	td {
+		position: relative;
+		left: 20px;
+	}
+
+	input, textarea {
+		width: 225px;
+		margin-top: 4px;
+		background: #E5EBF7;
+	}
+
+
+	textarea {
+		height: 50px;
+		resize: none;
+	}
+
+	#mod {
+		width: 100px;
+		margin-left: 126px;
+	}
+	
+	
+
+						/* Footer */
+
+	footer {
+		background: #1C509B url(images/footer.png) no-repeat;
+		height: 50px;
+		width: 100%;
+		margin-top: 30px;
+	}
+
+	footer ul {
+		list-style: none;
+		float: left;
+		height: 50px;
+		width: 940px;
+		line-height: 50px;
+		margin-left: 180px;
+		text-align: center;
+	}
+
+	footer ul li a {
+		color: white;
+		float: left;
+		text-decoration: none;
+		margin-left: 30px;
+		font-size: 12px;
+	}
+
+	footer ul li a:hover {
+		color: orange;
+		transition: color 0.3s;
+	}
+
+
+
+
+	</style>
+</head>
+<body>
+
+<div id="wrapper">
+	<nav id="mainNav">
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="about.html">About</a></li>
+			<li><a href="gallery.html">Gallery</a></li>
+			<li><a class="active" href="contact.html">Contact Us</a></li>
+		</ul>
+	</nav>
+
+	<header class="mainHeader">
+		<h1>By Dennis Ilyaev</h1>
+		<p>A website template made by Dennis Ilyaev, contact me for info, nothing extraordinary.</p>
+	</header>
+
+	<section>
+		<h2>Contact Us</h2>
+
+		<form method="post" name="contact">
+			<table width="270" height="350" cellpadding="0" cellspacing="0">
+				<tr width="100" height="30">
+					<td><p>Name:</p><input type="text" maxlength="10" name="name"></td> 
+					
+				</tr>
+
+				<tr width="100" height="30">
+					<td><p>Phone:</p><input type="number" maxlength="10" name="number"></td> 
+					
+				</tr>
+
+				<tr width="100" height="30">
+					<td><p>Email:</p><input type="text" maxlength="10" name="email"></td> 
+					
+				</tr>
+
+				<tr width="100" height="30">
+					<td><p>Message:</p><textarea name="message"></textarea></td> 
+				
+				</tr>
+
+				<tr width="100" height="30">
+					<td valign="top"><input style="color: #153678; font-size: 14px; font-weight: bold;" id="mod" type="submit" value="Send" onclick="sent()"></td> 
+				
+				</tr>
+
+				
+
+
+			</table>
+
+		</form>
+
+
+	</section>
+
+	<footer>
+		<ul>
+			<li><a href="#">Home</a></li>
+			<li><a href="#">About</a></li>
+			<li><a href="#">Gallery</a></li>
+			<li><a href="#">Contact Us</a></li>
+			<li><a href="#">Quotes</a></li>
+			<li><a href="#">Career</a></li>
+			<li><a href="#">Products</a></li>
+		</ul>
+	</footer>
+
+
+</div>
+
+<script type="text/javascript">
+	function sent() {
+		alert('Sent!');
+	}
+
+</script>
+</body>
+</html>
