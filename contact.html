@@ -3,7 +3,9 @@
 <head>
 	<title>Dennis Ilyaev</title>
 	<meta charset="utf-8">
+	<link href="style.css" rel="stylesheet">
 	<style type="text/css">
+
 
 	* {
 		margin: 0;
@@ -82,51 +84,50 @@
 
 	section {
 		width: 100%;
-		height: 400px;
+		height: 600px;
 		background: #E5EBF7;
 		margin-top: 15px;
+		overflow: hidden;
 	}
 
-	section h2 {
-		font-size: 21px;
-		padding: 7px 0 10px 7px;
-		color: #153678;
-	}
-
-	table {
-		margin: 0 auto;
-		background: #153678;
-		margin-top: -15px;
-	}
-
-
-	td p {
-		color: white;
-		font-size: 15px;
-		margin-right: 60px;
-
-	}
-
-	td {
-		position: relative;
-		left: 20px;
-	}
-
-	input, textarea {
-		width: 225px;
-		margin-top: 4px;
+	section #form-div {
 		background: #E5EBF7;
+		position: relative;
+		bottom: 43px;
 	}
 
+
+
+	#err {
+	    width: 375px;
+	    height: 92px;
+	    border: 2px dashed #9A0000;
+	    background: #FFE9EB;
+	    position: relative;
+	    bottom: 20px;
+	    display: none;
+  	}
+
+  	#err h5 {
+	    color: #fff;
+	    padding-left: 6px;
+	    background: #9A0000;
+	    line-height: 22px;
+	    width: 369px;
+	    height: 22px;
+	    position: absolute;
+    
+  	}
+
+ 	#err p {
+	    line-height: 20px;
+	    position: relative;
+	    top: 27px;
+	    margin-left: 6px;
+  	}
 
 	textarea {
-		height: 50px;
 		resize: none;
-	}
-
-	#mod {
-		width: 100px;
-		margin-left: 126px;
 	}
 	
 	
@@ -185,42 +186,29 @@
 		<p>A website template made by Dennis Ilyaev, contact me for info, nothing extraordinary.</p>
 	</header>
 
+
 	<section>
-		<h2>Contact Us</h2>
 
-		<form method="post" name="contact">
-			<table width="270" height="350" cellpadding="0" cellspacing="0">
-				<tr width="100" height="30">
-					<td><p>Name:</p><input type="text" maxlength="10" name="name"></td> 
-					
-				</tr>
+		<div id="form-div">
+    <form id="form" method="post" action="sent.html" name="contact_form" onsubmit="return checkForm()">
 
-				<tr width="100" height="30">
-					<td><p>Phone:</p><input type="number" maxlength="10" name="number"></td> 
-					
-				</tr>
+        <div id="err">
+        <h5>Error</h5>
+        <p id="user_name"></p>
+        <p id="user_phone"></p>
+        <p id="user_email"></p>
+        </div>
+        <input class="input" name="f_name" type="text" placeholder="Name" id="nameInput" />
+        <input class="input" name="phone" type="text" placeholder="Phone" id="telInput" />
+        <input class="input" name="email" type="text" placeholder="Email" id="emailInput" />
+        <textarea class="input" name="text" placeholder="Comment" id="messageInput"></textarea>
 
-				<tr width="100" height="30">
-					<td><p>Email:</p><input type="text" maxlength="10" name="email"></td> 
-					
-				</tr>
+        <h3 id="x" disabled style="opacity: 0.5;">Agree</h3><input type="checkbox" name="agree" onclick="show_send()" /> 
+  
+        <input type="submit" value="SEND" id="sendMe" disabled style="opacity: 0.5;" />
 
-				<tr width="100" height="30">
-					<td><p>Message:</p><textarea name="message"></textarea></td> 
-				
-				</tr>
-
-				<tr width="100" height="30">
-					<td valign="top"><input style="color: #153678; font-size: 14px; font-weight: bold;" id="mod" type="submit" value="Send" onclick="sent()"></td> 
-				
-				</tr>
-
-				
-
-
-			</table>
-
-		</form>
+     </form>
+</div>    
 
 
 	</section>
@@ -241,9 +229,136 @@
 </div>
 
 <script type="text/javascript">
-	function sent() {
-		alert('Sent!');
+
+	var inputs = document.getElementsByClassName('input'),
+	form = document.getElementById('form'),
+	newArr = [];
+
+
+	
+
+	for (var i = 0, len = inputs.length; i < len; i++) {
+		newArr.push(inputs[i]);
 	}
+
+	for (var j = 0, len = newArr.length; j < len; j++) {
+		newArr[j].addEventListener('focus', function() {this.style.background = '#ffff99';}, false);
+		newArr[j].addEventListener('blur', function() {this.style.background = '#fbdbdb';}, false);
+	}
+
+	function checkForm() {
+
+  	var nStr = document.getElementById('user_name');
+  	var pStr = document.getElementById('user_phone');
+  	var eStr = document.getElementById('user_email');
+    var nameReg = /^[A-Za-z]+$/;
+    var numberReg =  /^[0-9]+$/;
+    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+ 
+     
+     /**********************/
+     /*     CHECK NAME     */
+     /**********************/
+
+     var fname=document.forms["contact_form"]["f_name"].value;
+     if (fname=="")
+      {
+
+       nStr.innerHTML = "First name must be filled";
+      }
+
+     
+     else if (fname.length<2)
+      {
+       nStr.innerHTML ="First name is to short";
+      }
+     
+     
+     else if(!nameReg.test(fname))
+        {
+           nStr.innerHTML ="First name is wrong";
+        }
+
+
+     /****************************/
+     /*    CHECK PHONE NUMBER    */
+     /****************************/
+     var phone=document.forms["contact_form"]["phone"].value;
+     if (phone=="")
+      {
+       pStr.innerHTML ="Phone number must be filled";
+      }
+
+
+    
+    else if (!numberReg.test(phone))
+    {
+       pStr.innerHTML ="phone contain illegal digits";
+    }
+
+
+    else if ((phone.length<9 || phone.length>11))
+    {
+       pStr.innerHTML ="phone contain wrong number of digits";
+    }
+
+
+     /****************************/
+     /*    CHECK EMAIL ADDRESS   */
+     /****************************/
+    var mail=document.forms["contact_form"]["email"].value;
+    if (mail=="")
+    {
+       eStr.innerHTML ="Email address must be filled";
+    }
+
+
+    else if (!emailReg.test(mail))
+    {
+       eStr.innerHTML ="wrong e-mail address";
+    }
+
+ if (fname && phone && mail != '' ) {
+
+       return true;
+
+     } else {
+
+      var err = document.getElementById('err');
+      err.style.display = "block";
+
+     }
+
+ return false;
+ 
+ }
+
+
+function show_send() {
+
+     var agree = document.forms["contact_form"]["agree"].checked;
+     var send = document.getElementById("sendMe");
+     var x = document.getElementById('x');
+
+     if (!agree) {
+       send.disabled = true;
+       send.style.opacity = 0.5;
+       send.style.cursor = "default";
+
+       x.disabled = true;
+       x.style.opacity = 0.5;
+
+      } else {
+
+       send.disabled = false;
+       send.style.opacity = 1;
+       send.style.cursor = "pointer";
+
+       x.disabled = false;
+       x.style.opacity = 1;
+      }
+
+ }
 
 </script>
 </body>
